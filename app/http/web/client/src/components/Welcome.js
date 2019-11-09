@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { getIndex } from '../utils/apiCalls'
+import { Context as nameContext } from '../utils/handleName'
+
+// const { name, setName } = useContext(nameContext)
 
 const Welcome = () => {
   const [message, setMessage] = useState('')
