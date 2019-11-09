@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
+import { getIndex } from './lib/apiCalls'
 
-function App() {
+const App = () => {
+  const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    if (!message) {
+      fetchMessage()
+    }
+  }, [])
+
+  const fetchMessage = async () => {
+    const payload = await getIndex()
+    setMessage(payload.message)
+  }
+
   return (
     <>
-      <h1>Hello World!</h1>
+      <h1>{message}</h1>
     </>
   )
 }
