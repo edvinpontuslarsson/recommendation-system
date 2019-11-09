@@ -1,11 +1,11 @@
 import React from 'react'
 import './App.css'
-import Welcome from './components/Welcome'
+import BasicForm from './components/BasicForm'
 
 const App = () => {
   return (
     <>
-      <Welcome />
+      <BasicForm></BasicForm>
     </>
   )
 }

@@ -22,10 +22,15 @@ import React, { useState, useEffect } from 'react'
 // maybe I can do pr on this now, nah fix in server
 
 const BasicForm = () => {
+  const handleSubmit = event => {
+    alert('tjoho!')
+    event.preventDefault()
+  }
+
   return (
     <>
-      <form>
-        <input type="text" onSubmit={} />
+      <form onSubmit={handleSubmit}>
+        <input type="text" />
         {/** Todo: do I need btn here? */}
       </form>
     </>
