@@ -4,10 +4,6 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# TODO: perhaps send static file from "/"
-# app = Flask(__name__, static_folder="../client/build")
-# https://stackoverflow.com/questions/44209978/serving-a-create-react-app-with-flask
-
 
 @app.route("/api", methods=["GET"])
 def index():
@@ -18,7 +14,6 @@ def index():
 @app.route("/api", methods=["POST"])
 def sayHello():
     data = request.get_json()
-    print(data)
     name = data["name"]
 
     response_obj = {"message": "Hello " + name}
