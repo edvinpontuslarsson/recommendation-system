@@ -14,6 +14,5 @@ const getPostObj = bodyObj => {
 
 export const postIndex = async name => {
   const response = await fetch(apiUrl, getPostObj({ name }))
-
   return response.json()
 }
