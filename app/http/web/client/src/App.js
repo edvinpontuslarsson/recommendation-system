@@ -5,7 +5,7 @@ import BasicForm from './components/BasicForm'
 const App = () => {
   return (
     <>
-      <BasicForm></BasicForm>
+      <BasicForm />
     </>
   )
 }
