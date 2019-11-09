@@ -18,9 +18,7 @@ def index():
 @app.route("/api", methods=["POST"])
 def sayHello():
     data = request.get_json()
-
     print(data)
-
     name = data["name"]
 
     response_obj = {"message": "Hello " + name}
