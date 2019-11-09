@@ -17,7 +17,11 @@ def index():
 
 @app.route("/api", methods=["POST"])
 def sayHello():
-    pass  # TODO: say hello to name
+    data = request.json
+    name = data.name
+
+    response_obj = {"message": "Hello " + name}
+    return json_response(response_obj)
 
 
 def json_response(payload, status=200):
