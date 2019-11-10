@@ -12,6 +12,13 @@ Install project with:
 pipenv install
 ```
 
+Also, from the app/http/web/ directory:
+
+```
+npm i
+npm run build
+```
+
 Activate virtual environment with:
 
 ```
