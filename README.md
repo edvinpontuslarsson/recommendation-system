@@ -1,39 +1,20 @@
 # Instructions
 
-### This is for development purposes, to deploy to production:
-
-https://flask.palletsprojects.com/en/1.1.x/tutorial/deploy/
-
-Install project with:
+## Install project
 
 ```
 pipenv install
-```
-
-Also, from the app/http/web/ directory:
-
-```
+cd app/http/web/client
 npm i
-npm run build
 ```
 
-Activate virtual environment with:
-
-```
-pipenv shell
-```
-
-Exit with:
-
-```
-exit
-```
-
-### To run API on port 4433:
+## Run API
 
 ```
 pipenv shell
 ```
+
+Then
 
 ```
 FLASK_APP=$PWD/app/http/api/endpoints.py FLASK_ENV=development pipenv run python -m flask run --port 4433
@@ -45,7 +26,13 @@ or
 FLASK_APP=app/http/api/endpoints.py FLASK_ENV=development pipenv run python3 -m flask run --port 4433
 ```
 
-### To run client
+## Exit pipenv
+
+```
+exit
+```
+
+## Run Client
 
 From here,
 
@@ -54,8 +41,12 @@ cd app/http/web/client
 npm start
 ```
 
+## Some personal notes
+
 To make a python directory:
 
 ```
 mkdir -p path/to/directory
 ```
+
+Work with fork from one's own repo: http://deanmalone.net/post/how-to-fork-your-own-repo-on-github/
