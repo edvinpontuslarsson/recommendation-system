@@ -1,4 +1,9 @@
+import os
 import csv
+
+
+def get_cwd():
+    return os.getcwd()
 
 
 def get_users():
@@ -6,9 +11,10 @@ def get_users():
     # app/http/api/data_access_layer.py
 
     # Todo: if works, get workdir first
-    with open("/home/edvin/UniCourses/web_intelligence/A1/recommendation-system/movies_large/users.csv", mode="r") as csv_file:
+    with open(get_cwd() + "/movies_large/users.csv", mode="r") as csv_file:
         users = csv.DictReader(csv_file)
         print(users)
 
 
 get_users()
+print(get_cwd())
