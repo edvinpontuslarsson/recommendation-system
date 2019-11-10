@@ -1,14 +1,8 @@
-from flask import Flask, send_from_directory, json, request
+from flask import Flask, json, request
 from flask_cors import CORS
 
-app = Flask(__name__, static_folder="../web/client/build")
+app = Flask(__name__)
 CORS(app)
-
-
-@app.route("/", defaults={'path': ''})
-@app.route('/<path:path>')
-def get_index(path):
-    return send_from_directory(app.static_folder, "index.html")
 
 
 @app.route("/api", methods=["GET"])
