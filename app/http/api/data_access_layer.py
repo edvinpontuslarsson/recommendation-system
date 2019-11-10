@@ -10,11 +10,17 @@ def get_users():
     # delimiter is ;
     # app/http/api/data_access_layer.py
 
-    # Todo: if works, get workdir first
     with open(get_cwd() + "/movies_large/users.csv", mode="r") as csv_file:
-        users = csv.DictReader(csv_file)
-        print(users)
+        csv_rows = csv.DictReader(csv_file, delimiter=';')
+        users = []
+
+        for row in csv_rows:
+            user = dict()
+            user["UserId"] = row["UserId"]
+            user["Name"] = row["Name"]
+            users.append(user)
+
+        return users
 
 
-get_users()
-print(get_cwd())
+print(get_users())
