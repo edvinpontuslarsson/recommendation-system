@@ -17,13 +17,13 @@ pipenv shell
 Then
 
 ```
-FLASK_APP=$PWD/app/http/api/endpoints.py FLASK_ENV=development pipenv run python -m flask run --port 4433
+FLASK_APP=$PWD/app/http/api/routes.py FLASK_ENV=development pipenv run python -m flask run --port 4433
 ```
 
 or
 
 ```
-FLASK_APP=app/http/api/endpoints.py FLASK_ENV=development pipenv run python3 -m flask run --port 4433
+FLASK_APP=app/http/api/routes.py FLASK_ENV=development pipenv run python3 -m flask run --port 4433
 ```
 
 ## Exit pipenv
