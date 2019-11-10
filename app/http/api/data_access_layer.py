@@ -2,15 +2,13 @@ import os
 import csv
 
 
-def get_cwd():
-    return os.getcwd()
-
-
 def get_users():
     return get_data(
         get_cwd() + "/movies_large/users.csv",
         ["UserId", "Name"]
     )
+
+# TODO: re-use logic above
 
 
 def get_data(filename, columns):
@@ -27,6 +25,10 @@ def get_data(filename, columns):
             data_sets.append(data)
 
         return data_sets
+
+
+def get_cwd():
+    return os.getcwd()
 
 
 print(get_users())
