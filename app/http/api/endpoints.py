@@ -1,13 +1,15 @@
 from flask import Flask, render_template, json, request
 from flask_cors import CORS
 
-app = Flask(__name__, static_folder="../web/client/build/static",
+# public/static?
+app = Flask(__name__, static_folder="../web/client/build",
             template_folder="../web/client/build")
 CORS(app)
 
 
-@app.route("/")
-def get_index():
+@app.route("/", defaults={'path': ''})
+@app.route('/<path:path>')
+def get_index(path):
     return render_template("index.html")
 
 
