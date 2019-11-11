@@ -38,7 +38,7 @@ From here,
 
 ```
 cd app/http/web/client
-npm start
+serve -s build # runs on port 5000
 ```
 
 ## Some personal notes
