@@ -41,11 +41,3 @@ def get_data(filename, columns):
 
 def get_cwd():
     return os.getcwd()
-
-
-print("Users")
-print(get_users())
-print("Movies")
-print(get_movies())
-print("Ratings")
-print(get_ratings())
