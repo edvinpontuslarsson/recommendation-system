@@ -4,21 +4,21 @@ import csv
 
 def get_users():
     return get_data(
-        get_cwd() + "/movies_large/users.csv",
+        get_cwd() + "/movies_example/users.csv",
         ["UserId", "Name"]
     )
 
 
 def get_movies():
     return get_data(
-        get_cwd() + "/movies_large/movies.csv",
+        get_cwd() + "/movies_example/movies.csv",
         ["MovieId", "Title", "Year"]
     )
 
 
 def get_ratings():
     return get_data(
-        get_cwd() + "/movies_large/ratings.csv",
+        get_cwd() + "/movies_example/ratings.csv",
         ["UserId", "MovieId", "Rating"]
     )
 
@@ -41,3 +41,11 @@ def get_data(filename, columns):
 
 def get_cwd():
     return os.getcwd()
+
+
+print("Users")
+print(get_users())
+print("Movies")
+print(get_movies())
+print("Ratings")
+print(get_ratings())

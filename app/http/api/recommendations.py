@@ -1,0 +1,1 @@
+def euclidean(a, b)
