@@ -8,7 +8,19 @@ def get_users():
         ["UserId", "Name"]
     )
 
-# TODO: re-use logic above
+
+def get_movies():
+    return get_data(
+        get_cwd() + "/movies_large/movies.csv",
+        ["MovieId", "Title", "Year"]
+    )
+
+
+def get_ratings():
+    return get_data(
+        get_cwd() + "/movies_large/ratings.csv",
+        ["UserId", "MovieId", "Rating"]
+    )
 
 
 def get_data(filename, columns):
@@ -19,8 +31,8 @@ def get_data(filename, columns):
         for row in csv_rows:
             data = dict()
 
-            for c in columns:
-                data[c] = row[c]
+            for col in columns:
+                data[col] = row[col]
 
             data_sets.append(data)
 
@@ -29,6 +41,3 @@ def get_data(filename, columns):
 
 def get_cwd():
     return os.getcwd()
-
-
-print(get_users())
