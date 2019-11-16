@@ -18,8 +18,15 @@ def euclidean(user_id_a, user_id_b, ratings):
     return inverted_score
 
 
-def movies_euclidean(user_id, ratings, movies):
+def movies_euclidean(user_id, all_data):
     # get movies OP hasn't seen
-    for r in ratings:
+    for r in all_data["ratings"]:
         pass
         # get movies OP hasn't seen that this person has
+
+
+def get_unseen_movies(user_id):
+    # todo: go through ratings, filter all not rated
+    # next step, filter duplicates
+    # map return list with just movie IDs
+    pass
