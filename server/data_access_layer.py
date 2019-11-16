@@ -15,18 +15,25 @@ def get_movies():
         ["MovieId", "Title", "Year"]
     )
 
+# squared = list(map(lambda x: x**2, items))
+
 
 def get_ratings():
-    return get_data(
+    ratings = get_data(
         get_cwd() + "/movies_example/ratings.csv",
         ["UserId", "MovieId", "Rating"]
     )
+
+    for r in ratings:
+        r["Rating"] = float(r["Rating"])
+
+    return ratings
 
 
 def get_data(filename, columns):
     with open(filename, mode="r") as csv_file:
         csv_rows = csv.DictReader(csv_file, delimiter=';')
-        data_sets = []
+        data_set = []
 
         for row in csv_rows:
             data = dict()
@@ -34,9 +41,9 @@ def get_data(filename, columns):
             for col in columns:
                 data[col] = row[col]
 
-            data_sets.append(data)
+            data_set.append(data)
 
-        return data_sets
+        return data_set
 
 
 def get_cwd():
