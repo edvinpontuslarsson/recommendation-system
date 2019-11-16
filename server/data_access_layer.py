@@ -2,24 +2,30 @@ import os
 import csv
 
 
+def get_all_data():
+    all_data = dict()
+    all_data["users"] = get_users()
+    all_data["movies"] = get_movies()
+    all_data["ratings"] = get_ratings()
+    return all_data
+
+
 def get_users():
-    return get_data(
+    return get_file_data(
         get_cwd() + "/movies_example/users.csv",
         ["UserId", "Name"]
     )
 
 
 def get_movies():
-    return get_data(
+    return get_file_data(
         get_cwd() + "/movies_example/movies.csv",
         ["MovieId", "Title", "Year"]
     )
 
-# squared = list(map(lambda x: x**2, items))
-
 
 def get_ratings():
-    ratings = get_data(
+    ratings = get_file_data(
         get_cwd() + "/movies_example/ratings.csv",
         ["UserId", "MovieId", "Rating"]
     )
@@ -30,7 +36,7 @@ def get_ratings():
     return ratings
 
 
-def get_data(filename, columns):
+def get_file_data(filename, columns):
     with open(filename, mode="r") as csv_file:
         csv_rows = csv.DictReader(csv_file, delimiter=';')
         data_set = []
