@@ -25,8 +25,22 @@ def movies_euclidean(user_id, all_data):
         # get movies OP hasn't seen that this person has
 
 
-def get_unseen_movies(user_id):
-    # todo: go through ratings, filter all not rated
-    # next step, filter duplicates
-    # map return list with just movie IDs
-    pass
+def unseen_movie_ids(user_id, ratings):
+    # wait, this doesn't work, others have seen movies this has also seen
+    # all_unseen = list(filter(lambda r: r["UserId"] != user_id, ratings))
+
+    # unique_unseen = set(map(lambda item: item["MovieId"], all_unseen))
+    """
+    unseen = set(item["MovieId"]
+                 for item in ratings if item["UserId"] != user_id)
+    print(unseen)
+    """
+
+    seen = set(item["MovieId"]
+               for item in ratings if item["UserId"] == user_id)
+    print("seen")
+    print(seen)
+    unseen = set(item["MovieId"]
+                 for item in ratings if not item["MovieId"] in seen)
+    print("unseen")
+    print(unseen)
