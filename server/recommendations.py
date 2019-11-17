@@ -1,4 +1,4 @@
-def movies_euclidean(user_id, all_data):
+def get_euclideans(user_id, all_data):
     users = all_data["users"]
     ratings = all_data["ratings"]
 
@@ -14,7 +14,7 @@ def movies_euclidean(user_id, all_data):
         movies.append(m)
 
     for u in users:
-        e_similarity = get_euclidean(user_id, u["UserId"], ratings)
+        e_similarity = euclidean(user_id, u["UserId"], ratings)
         for m in movies:
             if has_rated(u["UserId"], m["id"], ratings):
                 r = get_rating(u["UserId"], m["id"], ratings)
@@ -53,7 +53,7 @@ def get_unseen_movie_ids(user_id, ratings):
     return unseen
 
 
-def get_euclidean(user_id_a, user_id_b, ratings):
+def euclidean(user_id_a, user_id_b, ratings):
     ratings_a = list(filter(lambda r: r["UserId"] == user_id_a, ratings))
     ratings_b = list(filter(lambda r: r["UserId"] == user_id_b, ratings))
 
