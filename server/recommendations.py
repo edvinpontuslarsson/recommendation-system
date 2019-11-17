@@ -7,6 +7,7 @@ def movies_euclidean(user_id, all_data):
 
     for m_id in unseen_movie_ids:
         m = dict()
+        m["id"] = m_id
         m["title"] = get_movie_title(m_id, all_data["movies"])
         m["Σ_weighted_score"] = 0
         m["Σ_similarity"] = 0
@@ -22,8 +23,9 @@ def movies_euclidean(user_id, all_data):
     for u in users:
         e_similarity = get_euclidean(user_id, u["UserId"], ratings)
         for m in movies:
-            if has_rated(u["UserId"], m_id, ratings):
-                r = get_rating(u["UserId"], ratings)
+            if has_rated(u["UserId"], m["id"], ratings):
+                # wrong, need to know movie as well
+                r = get_rating(u["UserId"], m["id"], ratings)
                 m["Σ_weighted_score"] += (r * e_similarity)
                 m["Σ_similarity"] += e_similarity
 
@@ -39,9 +41,9 @@ def get_movie_title(m_id, movies):
             return m["Title"]
 
 
-def get_rating(user_id, ratings):
+def get_rating(user_id, m_id, ratings):
     for r in ratings:
-        if r["UserId"] == user_id:
+        if r["UserId"] == user_id and r["MovieId"] == m_id:
             return r["Rating"]
 
 
