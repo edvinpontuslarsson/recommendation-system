@@ -1,10 +1,29 @@
 def movies_euclidean(user_id, all_data):
+    users = all_data["users"]
     ratings = all_data["ratings"]
+    e_table = dict()
 
-    for r in ratings:
-        e_diff = get_euclidean(user_id, r["UserId"], ratings)
+    unseen_movie_ids = get_unseen_movie_ids(user_id, ratings)
+
+    # for each unseen movie
+    # for each user
+    # if seen the movie
+    # add to Σws # weighted score = rating * e_distance
+    # add to Σsim based on those that has seen the movie
+    """
+    for id in unseen_movie_ids:
+        for u in users:
+
+    for r in ratings:  # change this loop
+        e_similarity = get_euclidean(user_id, r["UserId"], ratings)
         diff_ratings = get_diff_ratings(user_id, r["UserId"], ratings)
-        # get movies OP hasn't seen that this person has
+    """
+
+
+def has_rated(user_id, movie_id, ratings):
+    return any(r["UserId"] == user_id
+               and r["MovieId"] == movie_id
+               for r in ratings)
 
 
 def get_diff_ratings(user_id_a, user_id_b, ratings):
@@ -25,6 +44,14 @@ def get_diff_ratings(user_id_a, user_id_b, ratings):
 def get_ratings(user_id, ratings):
     return set(item["MovieId"]
                for item in ratings if item["UserId"] == user_id)
+
+
+def get_unseen_movie_ids(user_id, ratings):
+    seen = set(item["MovieId"]
+               for item in ratings if item["UserId"] == user_id)
+    unseen = set(item["MovieId"]
+                 for item in ratings if not item["MovieId"] in seen)
+    return unseen
 
 
 def get_euclidean(user_id_a, user_id_b, ratings):
