@@ -13,18 +13,10 @@ def movies_euclidean(user_id, all_data):
         m["Σ_similarity"] = 0
         movies.append(m)
 
-    # for each user
-    # get e-sim
-    # for each unseen movie
-    # if user seen the movie
-    # add to Σws # weighted score = rating * e_sim
-    # add to Σsim e_sim
-
     for u in users:
         e_similarity = get_euclidean(user_id, u["UserId"], ratings)
         for m in movies:
             if has_rated(u["UserId"], m["id"], ratings):
-                # wrong, need to know movie as well
                 r = get_rating(u["UserId"], m["id"], ratings)
                 m["Σ_weighted_score"] += (r * e_similarity)
                 m["Σ_similarity"] += e_similarity
