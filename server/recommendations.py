@@ -1,49 +1,49 @@
 def movies_euclidean(user_id, all_data):
     users = all_data["users"]
     ratings = all_data["ratings"]
-    e_table = dict()
 
+    movies = list()
     unseen_movie_ids = get_unseen_movie_ids(user_id, ratings)
 
-    # for each unseen movie
-    # for each user
-    # if seen the movie
-    # add to Σws # weighted score = rating * e_distance
-    # add to Σsim based on those that has seen the movie
-    """
-    for id in unseen_movie_ids:
-        for u in users:
+    for m_id in unseen_movie_ids:
+        m = dict()
+        m["title"] = get_movie_title(m_id, all_data["movies"])
+        m["Σ_weighted_score"] = 0
+        m["Σ_similarity"] = 0
+        movies.append(m)
 
-    for r in ratings:  # change this loop
-        e_similarity = get_euclidean(user_id, r["UserId"], ratings)
-        diff_ratings = get_diff_ratings(user_id, r["UserId"], ratings)
-    """
+    # for each user
+    # get e-sim
+    # for each unseen movie
+    # if user seen the movie
+    # add to Σws # weighted score = rating * e_sim
+    # add to Σsim e_sim
+
+    for u in users:
+        e_similarity = get_euclidean(user_id, u["UserId"], ratings)
+        for m in movies:
+            if has_rated(u["UserId"], m_id, ratings):
+                r = get_rating(u["UserId"], ratings)
+                m["Σ_weighted_score"] += (r * e_similarity)
+                m["Σ_similarity"] += e_similarity
+
+
+def get_movie_title(m_id, movies):
+    for m in movies:
+        if m["MovieId"] == m_id:
+            return m["Title"]
+
+
+def get_rating(user_id, ratings):
+    for r in ratings:
+        if r["UserId"] == user_id:
+            return r["Rating"]
 
 
 def has_rated(user_id, movie_id, ratings):
     return any(r["UserId"] == user_id
                and r["MovieId"] == movie_id
                for r in ratings)
-
-
-def get_diff_ratings(user_id_a, user_id_b, ratings):
-    '''
-    Ratings of user_id_b not rated by user_id_a
-    '''
-    seen_by_a = get_ratings(user_id_a, ratings)
-    seen_by_b = get_ratings(user_id_b, ratings)
-
-    diff_ids = set(item["MovieId"]
-                   for item in ratings if not item["MovieId"] in seen_by_a
-                   and item["MovieId"] in seen_by_b)
-
-    return list(filter(lambda r: r["UserId"] == user_id_b
-                       and r["MovieId"] in diff_ids, ratings))
-
-
-def get_ratings(user_id, ratings):
-    return set(item["MovieId"]
-               for item in ratings if item["UserId"] == user_id)
 
 
 def get_unseen_movie_ids(user_id, ratings):
