@@ -27,6 +27,11 @@ def movies_euclidean(user_id, all_data):
                 m["Σ_weighted_score"] += (r * e_similarity)
                 m["Σ_similarity"] += e_similarity
 
+    for m in movies:
+        m["total_score"] = m["Σ_weighted_score"] / m["Σ_similarity"]
+
+    return movies
+
 
 def get_movie_title(m_id, movies):
     for m in movies:
