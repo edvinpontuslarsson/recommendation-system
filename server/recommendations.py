@@ -1,17 +1,10 @@
 def movies_euclidean(user_id, all_data):
-    unseen_movie_ids = get_unseen_movie_ids(user_id, all_data["ratings"])
-    for r in all_data["ratings"]:
-        e_diff = get_euclidean(user_id, r["UserId"], all_data["ratings"])
-        pass
+    ratings = all_data["ratings"]
+
+    for r in ratings:
+        e_diff = get_euclidean(user_id, r["UserId"], ratings)
+        diff_ratings = get_diff_ratings(user_id, r["UserId"], ratings)
         # get movies OP hasn't seen that this person has
-
-
-def get_unseen_movie_ids(user_id, ratings):
-    seen = set(item["MovieId"]
-               for item in ratings if item["UserId"] == user_id)
-    unseen = set(item["MovieId"]
-                 for item in ratings if not item["MovieId"] in seen)
-    return unseen
 
 
 def get_diff_ratings(user_id_a, user_id_b, ratings):
