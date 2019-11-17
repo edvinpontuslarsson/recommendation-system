@@ -2,9 +2,9 @@ import data_access_layer
 import recommendations
 
 ratings = data_access_layer.get_ratings()
-distance = recommendations.euclidean("7", "4", ratings)
+distance = recommendations.get_euclidean("7", "4", ratings)
 
 # print(data_access_layer.get_all_data())
 
-recommendations.unseen_movie_ids(
-    "7", data_access_layer.get_all_data()["ratings"])
+diff_ratings = recommendations.get_diff_ratings("7", "6", ratings)
+print(diff_ratings)

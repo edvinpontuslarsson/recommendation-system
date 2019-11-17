@@ -1,4 +1,40 @@
-def euclidean(user_id_a, user_id_b, ratings):
+def movies_euclidean(user_id, all_data):
+    unseen_movie_ids = get_unseen_movie_ids(user_id, all_data["ratings"])
+    for r in all_data["ratings"]:
+        e_diff = get_euclidean(user_id, r["UserId"], all_data["ratings"])
+        pass
+        # get movies OP hasn't seen that this person has
+
+
+def get_unseen_movie_ids(user_id, ratings):
+    seen = set(item["MovieId"]
+               for item in ratings if item["UserId"] == user_id)
+    unseen = set(item["MovieId"]
+                 for item in ratings if not item["MovieId"] in seen)
+    return unseen
+
+
+def get_diff_ratings(user_id_a, user_id_b, ratings):
+    '''
+    Ratings of user_id_b not rated by user_id_a
+    '''
+    seen_by_a = get_ratings(user_id_a, ratings)
+    seen_by_b = get_ratings(user_id_b, ratings)
+
+    diff_ids = set(item["MovieId"]
+                   for item in ratings if not item["MovieId"] in seen_by_a
+                   and item["MovieId"] in seen_by_b)
+
+    return list(filter(lambda r: r["UserId"] == user_id_b
+                       and r["MovieId"] in diff_ids, ratings))
+
+
+def get_ratings(user_id, ratings):
+    return set(item["MovieId"]
+               for item in ratings if item["UserId"] == user_id)
+
+
+def get_euclidean(user_id_a, user_id_b, ratings):
     ratings_a = list(filter(lambda r: r["UserId"] == user_id_a, ratings))
     ratings_b = list(filter(lambda r: r["UserId"] == user_id_b, ratings))
 
@@ -16,31 +52,3 @@ def euclidean(user_id_a, user_id_b, ratings):
 
     inverted_score = 1 / (1 + similarity)
     return inverted_score
-
-
-def movies_euclidean(user_id, all_data):
-    # get movies OP hasn't seen
-    for r in all_data["ratings"]:
-        pass
-        # get movies OP hasn't seen that this person has
-
-
-def unseen_movie_ids(user_id, ratings):
-    # wait, this doesn't work, others have seen movies this has also seen
-    # all_unseen = list(filter(lambda r: r["UserId"] != user_id, ratings))
-
-    # unique_unseen = set(map(lambda item: item["MovieId"], all_unseen))
-    """
-    unseen = set(item["MovieId"]
-                 for item in ratings if item["UserId"] != user_id)
-    print(unseen)
-    """
-
-    seen = set(item["MovieId"]
-               for item in ratings if item["UserId"] == user_id)
-    print("seen")
-    print(seen)
-    unseen = set(item["MovieId"]
-                 for item in ratings if not item["MovieId"] in seen)
-    print("unseen")
-    print(unseen)
