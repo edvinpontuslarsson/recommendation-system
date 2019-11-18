@@ -4,7 +4,7 @@
 
 ```
 pipenv install
-cd app/http/web/client
+cd client
 npm i
 ```
 
@@ -37,7 +37,7 @@ exit
 From here,
 
 ```
-cd app/http/web/client
+cd client
 serve -s build # runs on port 5000
 ```
 
