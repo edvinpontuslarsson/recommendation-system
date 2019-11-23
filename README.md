@@ -4,8 +4,6 @@
 
 ```
 pipenv install
-cd client
-npm i
 ```
 
 ## Run API
@@ -30,15 +28,6 @@ FLASK_APP=server/routes.py FLASK_ENV=development pipenv run python3 -m flask run
 
 ```
 exit
-```
-
-## Run Client
-
-From here,
-
-```
-cd client
-serve -s build # runs on port 5000
 ```
 
 ## Some personal notes
